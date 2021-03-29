@@ -5,7 +5,7 @@
         "metaDataVersion": "1.1.0",
         "name": "com.microchip.mcu8.mplabx.project.pic16f18446-curiosity-board-tone-generator",
         "version": "1.0.1",
-        "displayName": "Tone generator",
+        "displayName": "Tone Generator Using NCO",
         "projectName": "pic16f18446-curiosity-board-tone-generator",
         "shortDescription": "This project describes how to configure the NCO to produce a square wave with a desired frequency and connect it to a ",
         "ide": {
@@ -39,14 +39,16 @@
         "author": "Microchip",
         "subcategories": [
             [
-               "Peripherals", "NCO"
+               "Peripherals",
+			   "NCO"
             ]
         ],
         "peripherals": [
             "NCO"
         ],
         "keywords": [
-            "square wave"			
+            "square wave",
+			"tone generator"
         ],
 		"additionalData": {
 			"longDescription": {
