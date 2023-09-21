@@ -1,82 +1,122 @@
-[![MCHP](images/microchip.png)](https://www.microchip.com)
+<a href="https://www.microchip.com" rel="nofollow"><img src="images/microchip.png" alt="MCHP" width="300"/></a>
 
-# Tone Generator Using NCO
+# Numerically Controlled Oscillator (NCO) — Tone Generator Using the PIC16F18446 Microcontroller
 
-In this project the NCO of the PIC16F18446 is used to generate a square wave with a desired frequency.
+In this project the NCO peripheral is used to generate a square wave with variable frequency in the audible spectrum.
+The frequency is adjusted using the POT1 potentiometer on the Curiosity Board. The potentiometer is read using the Analog-to-Digital Converter (ADC) peripheral.
 
 ## Related Documentation
 - [PIC16F18446 Product Family Page](https://www.microchip.com/design-centers/8-bit/pic-mcus/device-selection/pic16f18446)
-- [PIC16F18446 datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/40001985B.pdf) for more information or specifications.
-
-
+- [PIC16F18446 Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/40001985B.pdf)
 
 ## Software Used
-- MPLAB® X IDE 5.30 or newer [(microchip.com/mplab/mplab-x-ide)](http://www.microchip.com/mplab/mplab-x-ide)
-- MPLAB® XC8 2.10 or newer compiler [(microchip.com/mplab/compilers)](http://www.microchip.com/mplab/compilers)
-- MPLAB® Code Configurator (MCC) 3.95 or newer [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
-- MPLAB® Code Configurator (MCC) PIC10/PIC12/PIC16/PIC18 library v1.79 or newer [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
+
+- [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) v6.15 or newer
+- [MPLAB® XC8](http://www.microchip.com/mplab/compilers) v2.45 or newer
+- [PIC16F1xxxx_DFP](https://packs.download.microchip.com/) v1.21.368
 
 ## Hardware Used
-- PIC16F18446 PDIP20 with Curiosity Development Board [(DM164137)](https://www.microchip.com/Developmenttools/ProductDetails/DM164137)
-- Generic earphones
-- 3.5mm female jack break-out board
-- 1kOhm resistor
+
+- [Curiosity Development Board](https://www.microchip.com/Developmenttools/ProductDetails/DM164137)
+  <br><img src="images/curiosity-lpc.PNG" width="800">
+
+- [PIC16F18446 PDIP20](https://www.microchip.com/en-us/product/PIC16F18446)
+  <br><img src="images/pic16f18446pdip.PNG" width="400">
+
+- [BUZZ CLICK board™](https://www.mikroe.com/buzz-click) (mikroBUS™ socket 1):
+  <br><img src="images/buzz-click-board.jpg" height="400">
+<br>
+
+## Operation
+
+To program the microcontroller with this MPLAB X project, follow the steps provided in the [How to Program the Microcontroller](#how-to-program-the-microcontroller) chapter.<br><br>
 
 ## Setup
 
-<br><img src="images/demo.png" width="600">
+The following configurations must be made for this project:
 
-In this demo,
-- PIC16F18446 (20-pin, PDIP) MCU is used to generate an adjustable frequency square signal.
-- The Curiosity development board is used as it has got on-board programmer and debugger.
-- A set of headphones in used to hear the output sound.
+- Clock Control:
+  - Clock Source: HFINTOSC
+  - HF Internal Clock: 32 MHz
+  - Clock Divider: 4
 
-The frequency is adjusted using the POT1 on the Curiosity Board. The POT1 is read using the PIC's ADCC. In order to hear the sound, the headphone set must be connected in series with 1k resistor to RC1 and GND.
+  <br><img src="images/clock_control.PNG" width="600">
 
-### Demo Hardware Setup
+- Configuration bits:
+  - WDT operating mode: WDT disabled
 
-- Plug the PIC16F18446 MCU into its socket on the Curiosity board
-- Connect a set of earphones in series with 1k resistor to RC1 and GND
+  <br><img src="images/config_bits.PNG" width="600">
 
-### MCC Settings
+- NCO1:
+  - Enable NCO: Yes
+  - NCO Mode: FDC mode
+  - Output polarity: active high
+  - Clock Source FOSC
+  - Requested NCO Output Frequency: 1000 Hz
 
-This section shows the settings used in the demo/example for various MCU modules configuration. These settings were done using the Microchip Code Configurator (MCC). Open MCC to look at the settings of the modules.
+  <br><img src="images/nco1.PNG" width="600">
 
-### System Module Settings
+- ADCC:
+  - Enable ADC: Yes
+  - Operating Mode: Basic mode
+  - Result Alignment: Right
+  - Positive Input Channel: ANC0
+  - Positive Reference: VDD
+  - Negative Reference: VSS
+  - Auto-conversion Trigger: Disabled
+  - Acquisition Count: 1
+  - Clock Source: FOSC
+  - Clock Divider: FOSC/32
 
-The MCU uses the high frequency internal oscillator (HFINTOSC), and the clock is set to 8 MHz. Watchdog Timer is not used in this demo, so it is disabled.
+  <br><img src="images/adc.PNG" width="600">
 
-<br><img src="images/oscillator.png" width="600">
+| Pin | Configuration  |        Description        |
+| :-: | :------------: | :-----------------------: |
+| RC0 |  Analog input  |        Potentiometer      |
+| RC5 | Digital output |           Buzzer          |
 
-### ADCC Settings
-
-ADCC is used to read the POT1. It is configured to operate in basic mode, with a clock of Fosc/64.
-
-<br><img src="images/adcc.png" width="600">
-
-### NCO1 Settings
-
-NCO1 is used to generate the square signal on a specific frequency. It is configured to operate in fixed duty cycle (FDC) mode, with output active high, and clock source Fosc.
-
-<br><img src="images/nco.png" width="600">
-
-### Pin Manager Settings
-
-The pins are configured as follows:
-- ADCC input on RC0, named channel_ANC0
-- NCO1 output is connected to pin RC1
-
-<br><img src="images/pin.png" width="600">
-
-<br><img src="images/pin_mod.png" width="600">
+<br><img src="images/pin_grid_3.PNG" width="600">
+<br><img src="images/pins_3.PNG" width="600">
 
 ## Demo
 
-1. After making the above hardware connections, connect the headphones in series with 1k resistor to RC1 and GND.
-2. Connect the Curiosity board to PC using the USB cable.
-3. Build demo firmware and load the generated hex file onto the PIC16F18446 MCU. When the demo firmware is loaded, a tone will be heard in the headphones.
-4. Move the POT1 to adjust the tone frequency.
+Board setup:
 
-## Conclusion
+<br><img src="images/demo.jpg" width="600">
 
-This example shows how easy it is to use the PIC16F18446 and MCC to make a simple tone generator.
+## Summary
+
+This code example shows how to make a simple tone generator using the NCO and ADC peripherals.
+
+## How to Program the Microcontroller
+
+This chapter demonstrates how to use the MPLAB X IDE to program a PIC® device with an `Example_Project.X`. This applies to other projects.
+
+1.  Connect the Curiosity Development board to the PC.
+
+2.  Open the `Example_Project.X` project in MPLAB X IDE.
+
+3.  Set the `Example_Project.X` project as main project.
+    <br>Right click the project in the **Projects** tab and then Set as Main Project.
+    <br><img src="images/Program_Set_as_Main_Project.PNG" width="600">
+
+4.  Clean and build the `Example_Project.X` project.
+    <br>Right click the `Example_Project.X` project and select Clean and Build.
+    <br><img src="images/Program_Clean_and_Build.PNG" width="600">
+
+5.  Select Starter Kits (PKOB) in the Connected Hardware Tool section of the project settings:
+    <br>Right click the project and **Properties**.
+    <br>Click the arrow under the Connected Hardware Tool, and from the dropdown select Starter Kits (PKOB) (click the SN).
+    <br>Click **Apply** and then **OK**.
+    <br><img src="images/Program_Tool_Selection.PNG" width="600">
+
+6.  Program the project to the microcontroller.
+    <br>Right click the project and then Make and Program Device.
+    <br><img src="images/Program_Make_and_Program_Device.PNG" width="600">
+
+<br>
+
+- [Back to Top](#numerically-controlled-oscillator-nco--tone-generator-using-the-pic16f18446-microcontroller)
+- [Back to Setup](#setup)
+- [Back to Demo](#demo)
+- [Back to Summary](#summary)

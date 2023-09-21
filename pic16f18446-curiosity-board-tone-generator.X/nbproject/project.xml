@@ -4,12 +4,8 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>pic16f18446-curiosity-board-tone-generator</name>
-            <creation-uuid>5afd3add-06b5-47d5-a993-3660dcfda151</creation-uuid>
+            <creation-uuid>f8d23f07-5442-4dfd-875f-be0c1f28a4df</creation-uuid>
             <make-project-type>0</make-project-type>
-            <c-extensions>c</c-extensions>
-            <cpp-extensions/>
-            <header-extensions>h</header-extensions>
-            <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList/>

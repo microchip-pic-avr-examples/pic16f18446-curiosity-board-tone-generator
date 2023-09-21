@@ -2,29 +2,29 @@
     "metaDataVersion": "1.0.0",
     "category": "com.microchip.ide.project",
     "content": {
-        "metaDataVersion": "1.1.0",
+        "metaDataVersion": "1.3.0",
         "name": "com.microchip.mcu8.mplabx.project.pic16f18446-curiosity-board-tone-generator",
-        "version": "1.0.1",
-        "displayName": "Tone Generator Using NCO",
+        "version": "2.0.0",
+        "displayName": "Numerically Controlled Oscillator (NCO) — Tone Generator Using the PIC16F18446 Microcontroller",
         "projectName": "pic16f18446-curiosity-board-tone-generator",
-        "shortDescription": "This project describes how to configure the NCO to produce a square wave with a desired frequency and connect it to a ",
+        "shortDescription": "This project shows how to generate an audio tone using the NCO peripheral. Pitch adjustment is done using the ADC peripheral and a potentiometer.",
         "ide": {
             "name": "MPLAB X",
-            "semverRange": ">=5.30.0"
+            "semverRange": ">=6.15.0"
         },
         "compiler": [
-			{
-				"name": "XC8",
-				"semverRange": "^2.10.0"
-			}
-		],
+            {
+                "name": "XC8",
+                "semverRange": "^2.45.0"
+            }
+        ],
         "dfp": {
             "name": "PIC16F1xxxx_DFP",
-            "semverRange": "^1.2.99"
+            "semverRange": "^1.21.368"
         },
         "configurator": {
             "name": "MCC",
-            "semverRange": ">=3.95.0"
+            "semverRange": ">=5.3.7"
         },
         "device": {
             "metaDataVersion": "1.0.0",
@@ -37,18 +37,13 @@
             }
         },
         "author": "Microchip",
-        "subcategories": [
-            [
-               "Peripherals",
-			   "NCO"
-            ]
-        ],
         "peripherals": [
             "NCO"
         ],
         "keywords": [
-            "square wave",
-			"tone generator"
+            "Audio",
+			"Numerically Controlled Oscillator",
+            "Curiosity"
         ],
 		"additionalData": {
 			"longDescription": {
