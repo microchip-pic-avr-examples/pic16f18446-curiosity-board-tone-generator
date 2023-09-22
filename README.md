@@ -2,8 +2,8 @@
 
 # Numerically Controlled Oscillator (NCO) — Tone Generator Using the PIC16F18446 Microcontroller
 
-In this project the NCO peripheral is used to generate a square wave with variable frequency in the audible spectrum.
-The frequency is adjusted using the POT1 potentiometer on the Curiosity Board. The potentiometer is read using the Analog-to-Digital Converter (ADC) peripheral.
+In this project, the NCO peripheral generates a square-wave with variable frequency in the audible spectrum.
+The POT1 potentiometer on the Curiosity Board adjusts the frequency. The potentiometer is read using the Analog-to-Digital Converter (ADC) peripheral.
 
 ## Related Documentation
 - [PIC16F18446 Product Family Page](https://www.microchip.com/design-centers/8-bit/pic-mcus/device-selection/pic16f18446)
@@ -50,8 +50,8 @@ The following configurations must be made for this project:
 - NCO1:
   - Enable NCO: Yes
   - NCO Mode: FDC mode
-  - Output polarity: active high
-  - Clock Source FOSC
+  - Output polarity: Active high
+  - Clock Source: F<sub>OSC</sub>
   - Requested NCO Output Frequency: 1000 Hz
 
   <br><img src="images/nco1.PNG" width="600">
@@ -61,12 +61,12 @@ The following configurations must be made for this project:
   - Operating Mode: Basic mode
   - Result Alignment: Right
   - Positive Input Channel: ANC0
-  - Positive Reference: VDD
-  - Negative Reference: VSS
+  - Positive Reference: V<sub>DD</sub>
+  - Negative Reference: V<sub>SS</sub>
   - Auto-conversion Trigger: Disabled
   - Acquisition Count: 1
-  - Clock Source: FOSC
-  - Clock Divider: FOSC/32
+  - Clock Source: F<sub>OSC</sub>
+  - Clock Divider: F<sub>OSC</sub>/32
 
   <br><img src="images/adc.PNG" width="600">
 
@@ -86,7 +86,7 @@ Board setup:
 
 ## Summary
 
-This code example shows how to make a simple tone generator using the NCO and ADC peripherals.
+This code example shows how to make a tone generator using the NCO and ADC peripherals.
 
 ## How to Program the Microcontroller
 
@@ -106,7 +106,7 @@ This chapter demonstrates how to use the MPLAB X IDE to program a PIC® device w
 
 5.  Select Starter Kits (PKOB) in the Connected Hardware Tool section of the project settings:
     <br>Right click the project and **Properties**.
-    <br>Click the arrow under the Connected Hardware Tool, and from the dropdown select Starter Kits (PKOB) (click the SN).
+    <br>Click the arrow under the Connected Hardware Tool, and from the dropdown, select Starter Kits (PKOB) by clicking the SN.
     <br>Click **Apply** and then **OK**.
     <br><img src="images/Program_Tool_Selection.PNG" width="600">
 
